@@ -17,7 +17,11 @@
             <state split_layout="SPLIT">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <first_editor relative-caret-position="198">
+=======
+              <first_editor relative-caret-position="153">
+>>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
 =======
               <first_editor relative-caret-position="153">
 >>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
@@ -36,8 +40,13 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="242">
               <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+=======
+            <state relative-caret-position="221">
+              <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+>>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
 =======
             <state relative-caret-position="221">
               <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
@@ -178,6 +187,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" weight="0.33002833" />
       <window_info anchor="bottom" id="Terminal" weight="0.3295129" />
@@ -198,6 +208,11 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
 >>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
+=======
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+>>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3271523" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -208,6 +223,9 @@
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.3271523" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
+=======
 >>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
 =======
 >>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
@@ -222,7 +240,11 @@
         <state split_layout="SPLIT">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <first_editor relative-caret-position="198">
+=======
+          <first_editor relative-caret-position="153">
+>>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
 =======
           <first_editor relative-caret-position="153">
 >>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
@@ -239,8 +261,13 @@
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="242">
           <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+=======
+        <state relative-caret-position="221">
+          <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+>>>>>>> 16dd1f6b7181f5aed8417c4e9afe951faea0361c
 =======
         <state relative-caret-position="221">
           <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
