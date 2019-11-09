@@ -16,6 +16,6 @@ encrypted_nums = [x+shift for x in encrypted_num]
 for i in range(length):
      encrypted_nums[i]=encrypted_nums[i]%26 + 97
 
-apple = ''.join(chr(i) for i in encrypted_nums)
-print(apple)
+encrypted_letters = ''.join(chr(i) for i in encrypted_nums)
+print(encrypted_letters)
 
