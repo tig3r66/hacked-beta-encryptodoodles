@@ -95,7 +95,11 @@ def in_same_column(two_chars, key_table):
     return False
 
 
-def encode_same_row(two_chars, key_table):
+def encrypt_same_row(two_chars, key_table):
+    pass
+
+
+def encrypt_same_column(two_chars, key_table):
     pass
 
 
