@@ -13,20 +13,19 @@ def AES (message,encryptORdecrypt):
 
 		remainder = length%16
 		num_of_blocks = int(((length-remainder)/16)+1)
-		try:
-			for blocks in range(num_of_blocks):
-				message_block = get_message(message)
-				key_block = get_key(key)
-				cipher.append(encrypt(message_block,key_block))
-		except:
-			print(cipher)
-			print(message_block)
-			print(key_block)
-		
+
+		for blocks in range(num_of_blocks):
+			message_block = get_message(message)
+			key_block = get_key(key)
+			print('encrypt:');print(encrypt(message_block,key_block))
+			cipher.append(encrypt(message_block,key_block))
+		print(cipher)
 		return ''.join(cipher)
 
 	# if decrypt is called
 	if encryptORdecrypt == '2':
+		print('HERE')
+		print('\n\n\n')
 		length = len(message)
 		remainder = length%16
 		num_of_blocks = int(((length-remainder)/16)+1)
@@ -128,21 +127,23 @@ def encrypt(message_block,key_block):
 
 		#STEP 2-ii column mixer
 		matrix = [[2,3,1,1],[1,2,3,1],[1,1,2,3],[3,1,1,2]]
+
 		for multiply_column in range(0,4):
 			#matrix multiplication
 			one_column = [output[0][multiply_column],output[1][multiply_column],output[2][multiply_column],output[3][multiply_column]]
-			output[0][multiply_column] = (one_column[0]*matrix[0][0])+(one_column[1]*matrix[0][1])+(one_column[2]*matrix[0][2])+(one_column[3]*matrix[0][3])
-			output[1][multiply_column] = (one_column[0]*matrix[1][0])+(one_column[1]*matrix[1][1])+(one_column[2]*matrix[1][2])+(one_column[3]*matrix[1][3])
-			output[2][multiply_column] = (one_column[0]*matrix[2][0])+(one_column[1]*matrix[2][1])+(one_column[2]*matrix[2][2])+(one_column[3]*matrix[2][3])
-			output[3][multiply_column] = (one_column[0]*matrix[3][0])+(one_column[1]*matrix[3][1])+(one_column[2]*matrix[3][2])+(one_column[3]*matrix[3][3])
-
+			output[0][multiply_column] = int(one_column[0]*matrix[0][0])+int(one_column[1]*matrix[0][1])+int(one_column[2]*matrix[0][2])+int(one_column[3]*matrix[0][3])
+			output[1][multiply_column] = int(one_column[0]*matrix[1][0])+int(one_column[1]*matrix[1][1])+int(one_column[2]*matrix[1][2])+int(one_column[3]*matrix[1][3])
+			output[2][multiply_column] = int(one_column[0]*matrix[2][0])+int(one_column[1]*matrix[2][1])+int(one_column[2]*matrix[2][2])+int(one_column[3]*matrix[2][3])
+			output[3][multiply_column] = int(one_column[0]*matrix[3][0])+int(one_column[1]*matrix[3][1])+int(one_column[2]*matrix[3][2])+int(one_column[3]*matrix[3][3])
+		
+		#ERROR heRE 
 		#STEP 2-iii XOR again
 		for xor_row2 in range(0,4):
-			output[xor_row2][0] = message_block[xor_row2][0]^key_block[xor_row2][0],
-			output[xor_row2][1] = message_block[xor_row2][1]^key_block[xor_row2][1],
-			output[xor_row2][2] = message_block[xor_row2][2]^key_block[xor_row2][2],
+			output[xor_row2][0] = message_block[xor_row2][0]^key_block[xor_row2][0]
+			output[xor_row2][1] = message_block[xor_row2][1]^key_block[xor_row2][1]
+			output[xor_row2][2] = message_block[xor_row2][2]^key_block[xor_row2][2]
 			output[xor_row2][3] = message_block[xor_row2][3]^key_block[xor_row2][3]
-				
+
 	#=============================================
 	#make output a string and output
 	output_string = ''.join([''.join(str(x) for x in output[0]),''.join(str(x) for x in output[1]),''.join(str(x) for x in output[2]),''.join(str(x) for x in output[3])])
@@ -177,9 +178,9 @@ def decrypt(message_block,key_block):
 				output[shift_row].insert(0,output[shift_row].pop(3))
 	#STEP 4: XOR key and ascii text
 	for xor_row in range(0,4):
-		output[xor_row2][0] = message_block[xor_row][0]^key_block[xor_row][0],
-		output[xor_row2][1] = message_block[xor_row][1]^key_block[xor_row][1],
-		output[xor_row2][2] = message_block[xor_row][2]^key_block[xor_row][2],
+		output[xor_row2][0] = message_block[xor_row][0]^key_block[xor_row][0]
+		output[xor_row2][1] = message_block[xor_row][1]^key_block[xor_row][1]
+		output[xor_row2][2] = message_block[xor_row][2]^key_block[xor_row][2]
 		output[xor_row2][3] = message_block[xor_row][3]^key_block[xor_row][3]
 		
 
@@ -198,4 +199,8 @@ def decrypt(message_block,key_block):
 message=input('enter message: ')
 eord = input('Enter 1 for encrypt and 2 for decrypt')
 cipher= AES(message,eord)
-print(cipher)
+#print('cipher:');print(cipher)
+
+#decrypt
+original=AES(cipher,2)
+#print('original:',end=" ");print(original)
