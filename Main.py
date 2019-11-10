@@ -4,14 +4,15 @@ import Caesar
 import Readtxt
 import Vigenere
 import playfair
-#from AES import AES
+# import AES
 
 if __name__ == '__main__':
     flag =  True
-
     while flag:
         #asks user for decryption or encryption
-        CypherType = input('Enter 1 for encryption, enter 2 for decryption: ')
+        CypherType = input('Option 1: encryption\nOption 2: decryption\n'
+                           'Please enter either 1 or 2: ')
+
 
         #FOR ENCRYPTION
         if CypherType == '1':
@@ -87,6 +88,6 @@ if __name__ == '__main__':
         pyperclip.copy(output)
         print('The text has been copied to your clipboard :)')
 
-        cont = input('Want to continue? (Y/N)').upper().strip()
+        cont = input('Want to continue? [Y/N]: ').upper().strip()
         if cont != 'Y':
             flag = False
