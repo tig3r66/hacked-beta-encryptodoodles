@@ -65,24 +65,24 @@ class EncryptPage(tk.Frame):
         label.pack(pady=10, padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(WelcomePage))
-        button1.pack()
+                            command=lambda: controller.show_frame(WelcomePage), pady=10, padx=10)
+        button1.pack(pady=10)
 
         button2 = tk.Button(self, text="Caesar",
-                            command=lambda: controller.show_frame(Caesars))
-        button2.pack()
+                            command=lambda: controller.show_frame(Caesars), pady=10, padx=10)
+        button2.pack(pady=10)
 
         button3 = tk.Button(self, text="Enigma",
-                            command=lambda: controller.show_frame(Enigma))
-        button3.pack()
+                            command=lambda: controller.show_frame(Enigma), pady=10, padx=10)
+        button3.pack(pady=10)
 
         button4 = tk.Button(self, text="Playfair",
-                            command=lambda: controller.show_frame(Playfair))
-        button4.pack()
+                            command=lambda: controller.show_frame(Playfair), pady=10, padx=10)
+        button4.pack(pady=10)
 
         button5 = tk.Button(self, text="Vigenere",
-                            command=lambda: controller.show_frame(Vigenere))
-        button5.pack()
+                            command=lambda: controller.show_frame(Vigenere), pady=10, padx=10)
+        button5.pack(pady=10)
 
 class Caesars(tk.Frame):
 
@@ -111,7 +111,7 @@ class Caesars(tk.Frame):
 
         results = StringVar()
         results.set('')
-        test_result = Label(self, textvariable = results)
+        test_result = Label(self, textvariable = results, font=LARGE_FONT)
         test_result.pack()
 
         def ButtonHandler(t):
@@ -122,6 +122,9 @@ class Caesars(tk.Frame):
             encrypted = CaesarTkinter.encrypt(message, entry_2.get())
             results.set(encrypted)
             pyperclip.copy(encrypted)
+
+            label_10 = Label(self, text='The output has been copied to your clipboard!')
+            label_10.pack()
 
         button1.bind("<Button-1>", lambda t: ButtonHandler(t))
         button1.pack(side=BOTTOM, anchor=S, pady=10)
@@ -184,7 +187,7 @@ class Enigma(tk.Frame):
 
         results = StringVar()
         results.set('')
-        test_result = Label(self, textvariable = results)
+        test_result = Label(self, textvariable = results, font=LARGE_FONT)
         test_result.pack()
 
         def ButtonHandler(t):
@@ -195,6 +198,9 @@ class Enigma(tk.Frame):
             encrypted = EnigmaTkinter.encrypt(message, entry_2.get(), entry_3.get(), entry_4.get(), entry_5.get(), entry_6.get(), entry_7.get())
             results.set(encrypted)
             pyperclip.copy(encrypted)
+
+            label_10 = Label(self, text='The output has been copied to your clipboard!')
+            label_10.pack()
 
         button1.bind("<Button-1>", lambda t: ButtonHandler(t))
         button1.pack(side=BOTTOM, anchor=S, pady=10)
@@ -227,7 +233,7 @@ class Playfair(tk.Frame):
 
         results = StringVar()
         results.set('')
-        test_result = Label(self, textvariable = results)
+        test_result = Label(self, textvariable = results, font=LARGE_FONT)
         test_result.pack()
 
         def ButtonHandler(t):
@@ -238,6 +244,9 @@ class Playfair(tk.Frame):
             encrypted = PlayfairTkinter.encrypt(message, entry_2.get())
             results.set(encrypted)
             pyperclip.copy(encrypted)
+
+            label_10 = Label(self, text='The output has been copied to your clipboard!')
+            label_10.pack()
 
         button1.bind("<Button-1>", lambda t: ButtonHandler(t))
         button1.pack(side=BOTTOM, anchor=S, pady=10)
@@ -270,7 +279,7 @@ class Vigenere(tk.Frame):
 
         results = StringVar()
         results.set('')
-        test_result = Label(self, textvariable = results)
+        test_result = Label(self, textvariable = results, font=LARGE_FONT)
         test_result.pack()
 
         def ButtonHandler(t):
@@ -281,6 +290,9 @@ class Vigenere(tk.Frame):
             encrypted = VigenereTkinter.encrypt(message, entry_2.get())
             results.set(encrypted)
             pyperclip.copy(encrypted)
+
+            label_10 = Label(self, text='The output has been copied to your clipboard!')
+            label_10.pack()
 
         button1.bind("<Button-1>", lambda t: ButtonHandler(t))
         button1.pack(side=BOTTOM, anchor=S, pady=10)
@@ -295,24 +307,24 @@ class DecryptPage(tk.Frame):
         label.pack(pady=10, padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(WelcomePage))
-        button1.pack()
+                            command=lambda: controller.show_frame(WelcomePage), pady=10, padx=10)
+        button1.pack(pady=10)
 
         button2 = tk.Button(self, text="Caesar",
-                            command=lambda: controller.show_frame(deCaesar))
-        button2.pack()
+                            command=lambda: controller.show_frame(deCaesar), pady=10, padx=10)
+        button2.pack(pady=10)
 
         button3 = tk.Button(self, text="Enigma",
-                            command=lambda: controller.show_frame(deEnigma))
-        button3.pack()
+                            command=lambda: controller.show_frame(deEnigma), pady=10, padx=10)
+        button3.pack(pady=10)
 
         button4 = tk.Button(self, text="Playfair",
-                            command=lambda: controller.show_frame(dePlayfair))
-        button4.pack()
+                            command=lambda: controller.show_frame(dePlayfair), pady=10, padx=10)
+        button4.pack(pady=10)
 
         button5 = tk.Button(self, text="Vigenere",
-                            command=lambda: controller.show_frame(deVigenere))
-        button5.pack()
+                            command=lambda: controller.show_frame(deVigenere), pady=10, padx=10)
+        button5.pack(pady=10)
 
 class deCaesar(tk.Frame):
 
@@ -348,6 +360,9 @@ class deCaesar(tk.Frame):
             decrypted = CaesarTkinter.decrypt(entry_1.get(), entry_2.get())
             results.set(decrypted)
             pyperclip.copy(decrypted)
+
+            label_10 = Label(self, text='The output has been copied to your clipboard!')
+            label_10.pack()
 
         button1.bind("<Button-1>", lambda t: ButtonHandler(t))
         button1.pack(side=BOTTOM, anchor=S, pady=10)
@@ -418,6 +433,9 @@ class deEnigma(tk.Frame):
             results.set(decrypted)
             pyperclip.copy(decrypted)
 
+            label_10 = Label(self, text='The output has been copied to your clipboard!')
+            label_10.pack()
+
         button1.bind("<Button-1>", lambda t: ButtonHandler(t))
         button1.pack(side=BOTTOM, anchor=S, pady=10)
         button2.pack(side=BOTTOM, anchor=E, padx=10)
@@ -457,6 +475,9 @@ class dePlayfair(tk.Frame):
             results.set(decrypted)
             pyperclip.copy(decrypted)
 
+            label_10 = Label(self, text='The output has been copied to your clipboard!')
+            label_10.pack()
+
         button1.bind("<Button-1>", lambda t: ButtonHandler(t))
         button1.pack(side=BOTTOM, anchor=S, pady=10)
         button2.pack(side=BOTTOM, anchor=E, padx=10)
@@ -495,6 +516,9 @@ class deVigenere(tk.Frame):
             decrypted = VigenereTkinter.decrypt(entry_1.get(), entry_2.get())
             results.set(decrypted)
             pyperclip.copy(decrypted)
+
+            label_10 = Label(self, text='The output has been copied to your clipboard!')
+            label_10.pack()
 
         button1.bind("<Button-1>", lambda t: ButtonHandler(t))
         button1.pack(side=BOTTOM, anchor=S, pady=10)
