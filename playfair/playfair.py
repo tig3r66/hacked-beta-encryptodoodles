@@ -96,10 +96,37 @@ def in_same_column(two_chars, key_table):
 
 
 def encrypt_same_row(two_chars, key_table):
-    pass
+    i, j = 0, 0
+    encrypted_char1, encrypted_char2 = None, None
+    while (encrypted_char1 is None) or (encrypted_char2 is None):
+        if j == 5:
+            i += 1
+            j = 0
+        if two_chars[0] == key_table[i][j]:
+            encrypted_char1 = key_table[i][(j+1) % 5]
+        if two_chars[1] == key_table[i][j]:
+            encrypted_char2 = key_table[i][(j+1) % 5]
+        j += 1
+    return encrypted_char1, encrypted_char2
 
 
 def encrypt_same_column(two_chars, key_table):
+    i, j = 0, 0
+    encrypted_char1, encrypted_char2 = None, None
+    transposed_table = list(zip(*key_table))
+    while (encrypted_char1 is None) or (encrypted_char2 is None):
+            if j == 5:
+                i += 1
+                j = 0
+            if two_chars[0] == transposed_table[i][j]:
+                encrypted_char1 = transposed_table[i][(j+1) % 5]
+            if two_chars[1] == transposed_table[i][j]:
+                encrypted_char2 = transposed_table[i][(j+1) % 5]
+            j += 1
+    return encrypted_char1, encrypted_char2
+
+
+def encrypt_same_rectangle(two_chars, key_table):
     pass
 
 
@@ -109,12 +136,15 @@ def encrypt(keyword, user_in):
     processed_text = split_text(user_in)
 
     encrypted_message = []
-
     for i in processed_text:
         if in_same_row(i, key_table):
-            pass
+            encypted_char1, encrypted_char2 = encrypt_same_row(i, key_table)
+            encrypted_message.append(encypted_char1)
+            encrypted_message.append(encrypted_char2)
         elif in_same_column(i, key_table):
-            pass
+            encypted_char1, encrypted_char2 = encrypt_same_column(i, key_table)
+            encrypted_message.append(encypted_char1)
+            encrypted_message.append(encrypted_char2)
         else:
             pass
 
