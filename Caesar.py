@@ -7,7 +7,7 @@ length = len(text)
 
 shift = input("Enter shift number: ")
 while shift.isnumeric() == False:
-    print("Please enter a number:")
+    print("Please enter a number for the shift:")
     shift = input()
 
 shift = int(shift) % 26
