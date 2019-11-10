@@ -353,7 +353,7 @@ class deCaesar(tk.Frame):
 
         results = StringVar()
         results.set('')
-        test_result = Label(self, textvariable = results)
+        test_result = Label(self, textvariable = results, font=LARGE_FONT)
         test_result.pack()
 
         def ButtonHandler(t):
@@ -425,7 +425,7 @@ class deEnigma(tk.Frame):
 
         results = StringVar()
         results.set('')
-        test_result = Label(self, textvariable = results)
+        test_result = Label(self, textvariable = results, font=LARGE_FONT)
         test_result.pack()
 
         def ButtonHandler(t):
@@ -467,7 +467,7 @@ class dePlayfair(tk.Frame):
 
         results = StringVar()
         results.set('')
-        test_result = Label(self, textvariable = results)
+        test_result = Label(self, textvariable = results, font=LARGE_FONT)
         test_result.pack()
 
         def ButtonHandler(t):
@@ -509,7 +509,7 @@ class deVigenere(tk.Frame):
 
         results = StringVar()
         results.set('')
-        test_result = Label(self, textvariable = results)
+        test_result = Label(self, textvariable = results, font=LARGE_FONT)
         test_result.pack()
 
         def ButtonHandler(t):
