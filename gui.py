@@ -1,6 +1,6 @@
 from tkinter import *
+import tkinter.messagebox
 
-root = Tk()
 #
 # topFrame = Frame(root)
 # topFrame.pack()
@@ -59,6 +59,42 @@ root = Tk()
 # frame.bind("<Button-3>", rightClick)
 # frame.pack()
 
+#MAKING MENUS
+def doNothing():
+    print('ok I will do nothing')
+
+root = Tk()
+
+menu = Menu(root)
+root.config(menu=menu)
+
+fileMenu = Menu(menu)
+menu.add_cascade(label = 'file', menu= fileMenu)
+fileMenu.add_command(label = 'New project', command = doNothing)
+fileMenu.add_command(label = 'New', command = doNothing)
+fileMenu.add_separator()
+fileMenu.add_command(label = 'Exit', command = doNothing)
+
+editMenu = Menu(menu)
+menu.add_cascade(label = 'edit', menu= editMenu)
+editMenu.add_command(label = 'redo', command = doNothing)
+
+toolbar = Frame(root, bg = 'blue')
+insertButt = Button(toolbar, text = 'Insert image', command = doNothing)
+insertButt.pack(side = LEFT, padx=2, pady=2)
+PrintBut = Button(toolbar, text = 'Print', command = doNothing)
+PrintBut.pack(side = LEFT, padx=2, pady=2)
+
+toolbar.pack(side = TOP, fill=X)
+
+status = Label(root, text = 'Preparing to do nothing...', bd=1, relief = SUNKEN, anchor=W)
+status.pack(side = BOTTOM, fill = X)
+
+# tkinter.messagebox.showinfo('message', 'title')
+# answer = tkinter.messagebox.askquestion('Question title', 'question')
+#
+# if answer == 'yes':
+#     print('console output')
 
 
 root.mainloop()
