@@ -1,11 +1,10 @@
 # This is the Vigener Cipher
 
-# Prompt user for code
-text = input('enter code: ')
-
 # Prompt user for key, convert to numbers, then convert to alphanumeric scale
 
 def encrypt():
+    # Prompt user for code
+    text = input('enter code: ')
 
     keyletter = list(input('enter key: '))
     keynumber = [ord(x)-96 for x in keyletter]
@@ -51,6 +50,9 @@ def encrypt():
 
 
 def decrypt():
+    # Prompt user for code
+    text = input('enter code: ')
+
     keyletter = list(input('enter key: '))
     keynumber = [ord(x) - 96 for x in keyletter]
 
