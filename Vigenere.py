@@ -4,7 +4,7 @@ text = input('message to encode: ')
 shift = int(input('enter shift: '))
 
 #function to do caesar cipher
-def encrypt()
+
 def shiftletter(shift, letter):
     #convert all letters to lowercase
     lowerletter = letter.lower()
@@ -31,4 +31,3 @@ for letter in text:
 
 print(newword)
 
-encrypt()
