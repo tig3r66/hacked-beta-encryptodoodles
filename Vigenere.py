@@ -4,42 +4,94 @@
 text = input('enter code: ')
 
 # Prompt user for key, convert to numbers, then convert to alphanumeric scale
-keyletter = list(input('enter key: '))
-keynumber = [ord(x)-96 for x in keyletter]
 
-# function to do caesar cipher
-def shiftletter(shift, letter):
+def encrypt():
 
-    # convert all letters to lowercase
-    lowerletter = letter.lower()
+    keyletter = list(input('enter key: '))
+    keynumber = [ord(x)-96 for x in keyletter]
 
-    # make sure to code for the space case
-    if ord(lowerletter) == 32:
-        newletter = ' '
+    # function to do caesar cipher
+    def shiftletter(shift, letter):
 
-    else:
-        # change shift the number on the alphanumeric scale
-        shiftnum = (ord(lowerletter) + shift - 96)%26
+        # convert all letters to lowercase
+        lowerletter = letter.lower()
 
-        #letter z is 26, not 0
-        if shiftnum == 0:
-            shiftnum = 26
+        # make sure to code for the space case
+        if ord(lowerletter) == 32:
+            newletter = ' '
 
-        # change the shift back into a letter
-        newletter = chr(shiftnum + 96)
+        else:
+            # change shift the number on the alphanumeric scale
+            shiftnum = (ord(lowerletter) + shift - 96)%26
 
-    return(newletter)
+            #letter z is 26, not 0
+            if shiftnum == 0:
+                shiftnum = 26
 
-newword =''
-spacecount = 0
+            # change the shift back into a letter
+            newletter = chr(shiftnum + 96)
 
-# relates values in text to values in key using index
-for i in range(len(text)):
+        return(newletter)
 
-    
-    newletter = shiftletter(keynumber[(i-spacecount) % len(keynumber)], text[i])
+    newword =''
+    spacecount = 0
 
-    if newletter == ' ':
-        spacecount += 1
-    newword = newword + newletter
-print(newword)
+    # relates values in text to values in key using index
+    for i in range(len(text)):
+
+        # generates new letter in text from key using shiftletter(exclude spaces from key conversion)
+        newletter = shiftletter(keynumber[(i-spacecount) % len(keynumber)], text[i])
+
+        # tracks spaces
+        if newletter == ' ':
+            spacecount += 1
+
+        newword = newword + newletter
+    print(newword)
+
+encrypt()
+
+def decrypt():
+    keyletter = list(input('enter key: '))
+    keynumber = [ord(x) - 96 for x in keyletter]
+
+    # function to do caesar cipher
+    def shiftletter(shift, letter):
+
+        # convert all letters to lowercase
+        lowerletter = letter.lower()
+
+        # make sure to code for the space case
+        if ord(lowerletter) == 32:
+            newletter = ' '
+
+        else:
+            # change shift the number on the alphanumeric scale
+            shiftnum = (ord(lowerletter) - shift - 96) % 26
+
+            # letter z is 26, not 0
+            if shiftnum == 0:
+                shiftnum = 26
+
+            # change the shift back into a letter
+            newletter = chr(shiftnum + 96)
+
+        return (newletter)
+
+    newword = ''
+    spacecount = 0
+
+    # relates values in text to values in key using index
+    for i in range(len(text)):
+
+        # generates new letter in text from key using shiftletter(exclude spaces from key conversion)
+        newletter = shiftletter(keynumber[(i - spacecount) % len(keynumber)], text[i])
+
+        # tracks spaces
+        if newletter == ' ':
+            spacecount += 1
+
+        newword = newword + newletter
+    print(newword)
+
+decrypt()
