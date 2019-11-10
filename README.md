@@ -1,4 +1,5 @@
 # hacked-beta-encryptodoodles
+Substitution
 
 Caesar cipher
     -Shifts all of the letters by a certain amount of letters
@@ -7,4 +8,14 @@ Caesar cipher
 Vigenere Cipher
     -Shifts by a keyword
     -If keyword was "ABCD", the encrypted message will be shifted by 1,2,3,4,1,2,3,4,etc for each letter
+
+The One-Time Pad
+
 Enigma Machine
+
+Playfair
+
+AES
+
+
+    
