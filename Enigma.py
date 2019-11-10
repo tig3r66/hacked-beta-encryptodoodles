@@ -51,15 +51,15 @@ def list_to_key(newlist,rotor_order):
 def encrypt(text):
     # user input rotor ordering
     rotor_order = [0, 0, 0]
-    rotor_order[0] = int(input('Pick rotor 1, between 1 and 5: '))
-    rotor_order[1] = int(input('Pick rotor 2, between 1 and 5: '))
-    rotor_order[2] = int(input('Pick rotor 3, between 1 and 5: '))
+    rotor_order[0] = int(input('Pick rotor 1, between 1 and 5: ')) -1
+    rotor_order[1] = int(input('Pick rotor 2, between 1 and 5: ')) -1
+    rotor_order[2] = int(input('Pick rotor 3, between 1 and 5: ')) -1
 
     # user input the rotor positions
     initial_pos = [0, 0, 0]
-    initial_pos[0] = int(input('What is position of the first rotor? Between 1 and 26: '))
-    initial_pos[1] = int(input('What is position of the second rotor? Between 1 and 26: '))
-    initial_pos[2] = int(input('What is position of the third rotor? Between 1 and 26: '))
+    initial_pos[0] = int(input('What is position of the first rotor? Between 1 and 26: ')) -1
+    initial_pos[1] = int(input('What is position of the second rotor? Between 1 and 26: ')) -1
+    initial_pos[2] = int(input('What is position of the third rotor? Between 1 and 26: ')) -1
 
     # initialize the encrypted text
     newword = ''
@@ -78,15 +78,15 @@ def encrypt(text):
 def decrypt(text):
     # user input rotor ordering
     rotor_order = [0, 0, 0]
-    rotor_order[0] = int(input('Pick rotor 1, between 1 and 5: '))
-    rotor_order[1] = int(input('Pick rotor 2, between 1 and 5: '))
-    rotor_order[2] = int(input('Pick rotor 3, between 1 and 5: '))
+    rotor_order[0] = int(input('Pick rotor 1, between 1 and 5: ')) -1
+    rotor_order[1] = int(input('Pick rotor 2, between 1 and 5: ')) -1
+    rotor_order[2] = int(input('Pick rotor 3, between 1 and 5: ')) -1
 
     # user input the rotor positions
     initial_pos = [0, 0, 0]
-    initial_pos[0] = int(input('What is position of the first rotor? Between 1 and 26: '))
-    initial_pos[1] = int(input('What is position of the second rotor? Between 1 and 26: '))
-    initial_pos[2] = int(input('What is position of the third rotor? Between 1 and 26: '))
+    initial_pos[0] = int(input('What is position of the first rotor? Between 1 and 26: ')) -1
+    initial_pos[1] = int(input('What is position of the second rotor? Between 1 and 26: ')) -1
+    initial_pos[2] = int(input('What is position of the third rotor? Between 1 and 26: ')) -1
 
     # initialize the encrypted text
     newword = ''
