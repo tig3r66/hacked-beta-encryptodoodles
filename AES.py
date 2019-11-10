@@ -17,15 +17,12 @@ def AES (message,encryptORdecrypt):
 		for blocks in range(num_of_blocks):
 			message_block = get_message(message)
 			key_block = get_key(key)
-			print('encrypt:');print(encrypt(message_block,key_block))
 			cipher.append(encrypt(message_block,key_block))
-		print(cipher)
 		return ''.join(cipher)
 
 	# if decrypt is called
-	if encryptORdecrypt == '2':
-		print('HERE')
-		print('\n\n\n')
+	else:
+		
 		length = len(message)
 		remainder = length%16
 		num_of_blocks = int(((length-remainder)/16)+1)
@@ -34,7 +31,7 @@ def AES (message,encryptORdecrypt):
 			key_block = get_key(key)
 			decrypted.append(decrypt(message_block,key_block))
 		
-		return ''.join(cipher)
+		return ''.join(decrypted)
 
 
 def get_message(message):
@@ -107,7 +104,6 @@ def get_key(key):
 	#NOTE formating block[row][column]
 def encrypt(message_block,key_block):
 	output = []
-
 	#STEP 1: XOR key and ascii text
 	for xor_row in range(0,4):
 		output.append([ message_block[xor_row][0]^key_block[xor_row][0],
@@ -136,15 +132,26 @@ def encrypt(message_block,key_block):
 			output[2][multiply_column] = int(one_column[0]*matrix[2][0])+int(one_column[1]*matrix[2][1])+int(one_column[2]*matrix[2][2])+int(one_column[3]*matrix[2][3])
 			output[3][multiply_column] = int(one_column[0]*matrix[3][0])+int(one_column[1]*matrix[3][1])+int(one_column[2]*matrix[3][2])+int(one_column[3]*matrix[3][3])
 		
-		#ERROR heRE 
+
 		#STEP 2-iii XOR again
 		for xor_row2 in range(0,4):
-			output[xor_row2][0] = message_block[xor_row2][0]^key_block[xor_row2][0]
-			output[xor_row2][1] = message_block[xor_row2][1]^key_block[xor_row2][1]
-			output[xor_row2][2] = message_block[xor_row2][2]^key_block[xor_row2][2]
-			output[xor_row2][3] = message_block[xor_row2][3]^key_block[xor_row2][3]
+			output[xor_row2][0] = output[xor_row2][0]^key_block[xor_row2][0]
+			output[xor_row2][1] = output[xor_row2][1]^key_block[xor_row2][1]
+			output[xor_row2][2] = output[xor_row2][2]^key_block[xor_row2][2]
+			output[xor_row2][3] = output[xor_row2][3]^key_block[xor_row2][3]
 
 	#=============================================
+	# end with row shift and XOR
+	for shift_row in range(0,4):
+		for shift_amount in range(0,shift_row):
+			output[shift_row].append(output[shift_row].pop(0))
+	for xor_row3 in range(0,4):
+		output[xor_row3][0] = output[xor_row3][0]^key_block[xor_row3][0]
+		output[xor_row3][1] = output[xor_row3][1]^key_block[xor_row3][1]
+		output[xor_row3][2] = output[xor_row3][2]^key_block[xor_row3][2]
+		output[xor_row3][3] = output[xor_row3][3]^key_block[xor_row3][3]
+
+
 	#make output a string and output
 	output_string = ''.join([''.join(str(x) for x in output[0]),''.join(str(x) for x in output[1]),''.join(str(x) for x in output[2]),''.join(str(x) for x in output[3])])
 	return output_string
@@ -152,15 +159,25 @@ def encrypt(message_block,key_block):
 
 def decrypt(message_block,key_block):
 	output = []
+	for xor_row3 in range(0,4):
+		output.append([ message_block[xor_row3][0]^key_block[xor_row3][0],
+						message_block[xor_row3][1]^key_block[xor_row3][1],
+						message_block[xor_row3][2]^key_block[xor_row3][2],
+						message_block[xor_row3][3]^key_block[xor_row3][3]
+			])
+
+	for shift_row in range(0,4):
+		for shift_amount in range(0,shift_row):
+			output[shift_row].insert(0,output[shift_row].pop(3))
 	#decrypt goes in reverse
 	for TenLoops in range(0,10):
 		#STEP 1: start with XOR
 		for xor_row2 in range(0,4):
-			output.append([ message_block[xor_row2][0]^key_block[xor_row2][0],
-							message_block[xor_row2][1]^key_block[xor_row2][1],
-							message_block[xor_row2][2]^key_block[xor_row2][2],
-							message_block[xor_row2][3]^key_block[xor_row2][3]
-				])
+			output[xor_row2][0] = output[xor_row2][0]^key_block[xor_row2][0]
+			output[xor_row2][1] = output[xor_row2][1]^key_block[xor_row2][1]
+			output[xor_row2][2] = output[xor_row2][2]^key_block[xor_row2][2]
+			output[xor_row2][3] = output[xor_row2][3]^key_block[xor_row2][3]
+
 
 		#STEP 2: column mixer
 		#encryped * inverse matrix = reverse
@@ -178,29 +195,24 @@ def decrypt(message_block,key_block):
 				output[shift_row].insert(0,output[shift_row].pop(3))
 	#STEP 4: XOR key and ascii text
 	for xor_row in range(0,4):
-		output[xor_row2][0] = message_block[xor_row][0]^key_block[xor_row][0]
-		output[xor_row2][1] = message_block[xor_row][1]^key_block[xor_row][1]
-		output[xor_row2][2] = message_block[xor_row][2]^key_block[xor_row][2]
-		output[xor_row2][3] = message_block[xor_row][3]^key_block[xor_row][3]
-		
+		output[xor_row2][0] = output[xor_row][0]^key_block[xor_row][0]
+		output[xor_row2][1] = output[xor_row][1]^key_block[xor_row][1]
+		output[xor_row2][2] = output[xor_row][2]^key_block[xor_row][2]
+		output[xor_row2][3] = output[xor_row][3]^key_block[xor_row][3]
 
 	original_message = []
 	#STEP 5 :convert to ascii
 	for ascii_row in range(0,4):
 		for ascii_column in range(0,4):
+			print(output)
 			original_message.append(chr(output[ascii_row][ascii_column]))
-
 	return ''.join(original_message)
 
-
-
-#TESTing
-#encrypt
 message=input('enter message: ')
-eord = input('Enter 1 for encrypt and 2 for decrypt')
-cipher= AES(message,eord)
-#print('cipher:');print(cipher)
+eORd = input('press 1 for encrypt: ')
+cipher = AES(message,eORd)
+print(cipher)
 
-#decrypt
-original=AES(cipher,2)
-#print('original:',end=" ");print(original)
+print('===now decrypt===')
+original=AES(cipher,0)
+print(original)
