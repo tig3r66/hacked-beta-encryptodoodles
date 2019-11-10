@@ -1,8 +1,8 @@
 # hacked-beta-encryptodoodles
 The following encryption ciphers were created during the hacked-beta 2019 competition.
-The main file incorporates Caesar, Viginere, Enigma, and Playfair into an incryption library that the user may select from.
-A simple GUI is also provided with the incryptions above. Substitution, The One-Time Pad, and AES are excluded from these files,
-however are functional and can be located in there respective files. For future iterations, they will be 
+The main file incorporates Caesar, Viginere, Enigma, and Playfair into an encryption library that the user may select from.
+A simple GUI is also provided with the encryptions above. Substitution, The One-Time Pad, and AES are excluded from these files,
+however are functional and can be located in their respective files. For future iterations, they will be 
 incorporated into the main files and GUI.
 
 Substitution
