@@ -31,7 +31,7 @@ The One-Time Pad
 Enigma Machine
     -Polyalphabetic substitution cipher modeled after the Enigma machines
     -Algorithm involves a pseudo random key sequence that simulates rotor cipher machines
-    -Utiizes initial positions of all 3 simulated rotors for encryption and decryption
+    -Utilizes initial positions of all 3 simulated rotors for encryption and decryption
     -Shifts the code using a modular function
     
 Playfair
