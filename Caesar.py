@@ -4,19 +4,16 @@ import numpy
 # for encrypting text
 def encrypt(text):
     length = len(text)
-
     # shift conditions, convert to integer
-    shift = input("Enter shift number: ")
-
+    shift = input("Enter shift: ").lower()
     while shift.isnumeric() == False:
         print("Please enter a number for the shift:")
-        shift = input()
+        shift = input("Enter shift: ")
 
     shift = int(shift) % 26
 
     alphanumeric_numbers = []
     encrypted_numbers = []
-
     # change ASCII numbers to alphanumeric numbers
     for n in range(length):
         a = text[n]
@@ -46,17 +43,14 @@ def decrypt(text):
     length = len(text)
 
     # shift conditions, convert to integer
-    shift = input("Enter shift number: ")
-
+    shift = input("Shift: ")
     while shift.isnumeric() == False:
-        print("Please enter a number for the shift:")
-        shift = input()
+        shift = input("Shift: ")
 
     shift = int(shift) % 26
 
     alphanumeric_numbers = []
     decrypted_numbers = []
-
     # change ASCII numbers to alphanumeric numbers
     for n in range(length):
         a = text[n]
@@ -79,4 +73,3 @@ def decrypt(text):
     # convert from ASCII numerals to corresponding characters
     decrypted_letters = ''.join(chr(i) for i in decrypted_numbers)
     return (decrypted_letters)
-

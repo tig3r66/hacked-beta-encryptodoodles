@@ -1,40 +1,54 @@
 # AES
 
 def AES (message,encryptORdecrypt):
+	try:
+		key = input("Enter Password: ")
+		cipher = []
+		decrypted = []
+		# if encrypt is called
+		if encryptORdecrypt == '1':
+			#enter message and key as string
+			#need 4 by 4 matrix
 
-	key = input("Enter Password: ")
-	cipher = []
-	decrypted = []
-	# if encrypt is called
-	if encryptORdecrypt == '1':
-		#enter message and key as string
-		#need 4 by 4 matrix
-		length = len(message)
+			length = len(message)
 
-		remainder = length%16
-		num_of_blocks = int(((length-remainder)/16)+1)
-
-		for blocks in range(num_of_blocks):
-			message_block = get_message(message)
-			key_block = get_key(key)
-			cipher.append(encrypt(message_block,key_block))
-		return ''.join(cipher)
-
-	# if decrypt is called
-	else:
+			remainder = length%16
+			num_of_blocks = int(((length-remainder)/16)+1)
+			cipher.append(num_of_blocks)
 		
-		length = len(message)
-		remainder = length%16
-		num_of_blocks = int(((length-remainder)/16)+1)
-		for blocks in range(num_of_blocks):
-			message_block = get_message(message)
-			key_block = get_key(key)
-			decrypted.append(decrypt(message_block,key_block))
-		
-		return ''.join(decrypted)
+			for blocks in range(num_of_blocks):
+				message_block = get_message(message)
+				message = list(message)
+				del message[0:16]
+				''.join(message)
+
+				key_block = get_key(key)
+
+				cipher.append(encrypt(message_block,key_block))
+
+			return cipher
+		# if decrypt is called
+		else:
+			
+			num_of_blocks = message[0]
+
+			
+			for blocks in range(num_of_blocks):
+				message_block = message[blocks+1]
+				
+				key_block = get_key(key)
+
+				d = decrypt(message_block,key_block)
+
+				decrypted.append(d)
+			
+			return ''.join(decrypted)
+	except:
+		return "INCORRECT PASSWORD"
 
 
 def get_message(message):
+
 	# only returns one of the blocks
 	#convert to 4 by 4 matrix
 	message = list(message)
@@ -43,6 +57,7 @@ def get_message(message):
 	ascii_message = []
 	for non_ascii in message:
 		ascii_message.append(ord(non_ascii))
+
 	while len(ascii_message)<4:
 		# append with space
 		ascii_message.append(32)
@@ -53,6 +68,7 @@ def get_message(message):
 		while len(ascii_message)<4:
 			# append with space
 			ascii_message.append(32)
+
 	return output
 
 def get_key(key):
@@ -101,8 +117,19 @@ def get_key(key):
 					del ascii_key[0]
 	return output
 
+def multiply_matrix(matrix1,matrix2):
+	import numpy as np 
+	output = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+	for move_row in range(0,4):
+		for move_col in range(0,4):
+			#matrix multiplication
+			
+			output[move_row][move_col] = (int(round(np.dot(matrix1[move_row],[matrix2[0][move_col],matrix2[1][move_col],matrix2[2][move_col],matrix2[3][move_col],]))))
+	return output
 	#NOTE formating block[row][column]
+
 def encrypt(message_block,key_block):
+
 	output = []
 	#STEP 1: XOR key and ascii text
 	for xor_row in range(0,4):
@@ -114,7 +141,7 @@ def encrypt(message_block,key_block):
 
 	#=====================================
 	#STEP 2: 10 loops of sub, row shift, column mix, and XOR
-	for TenLoops in range(0,10):
+	for NineLoops in range(0,9):
 
 		#STEP 2-i row shift, 1st row, now shift, 2nd row shift by 1
 		for shift_row in range(0,4):
@@ -124,27 +151,24 @@ def encrypt(message_block,key_block):
 		#STEP 2-ii column mixer
 		matrix = [[2,3,1,1],[1,2,3,1],[1,1,2,3],[3,1,1,2]]
 
-		for multiply_column in range(0,4):
-			#matrix multiplication
-			one_column = [output[0][multiply_column],output[1][multiply_column],output[2][multiply_column],output[3][multiply_column]]
-			output[0][multiply_column] = int(one_column[0]*matrix[0][0])+int(one_column[1]*matrix[0][1])+int(one_column[2]*matrix[0][2])+int(one_column[3]*matrix[0][3])
-			output[1][multiply_column] = int(one_column[0]*matrix[1][0])+int(one_column[1]*matrix[1][1])+int(one_column[2]*matrix[1][2])+int(one_column[3]*matrix[1][3])
-			output[2][multiply_column] = int(one_column[0]*matrix[2][0])+int(one_column[1]*matrix[2][1])+int(one_column[2]*matrix[2][2])+int(one_column[3]*matrix[2][3])
-			output[3][multiply_column] = int(one_column[0]*matrix[3][0])+int(one_column[1]*matrix[3][1])+int(one_column[2]*matrix[3][2])+int(one_column[3]*matrix[3][3])
-		
+		output = multiply_matrix(matrix,output)
 
 		#STEP 2-iii XOR again
 		for xor_row2 in range(0,4):
+			
 			output[xor_row2][0] = output[xor_row2][0]^key_block[xor_row2][0]
 			output[xor_row2][1] = output[xor_row2][1]^key_block[xor_row2][1]
 			output[xor_row2][2] = output[xor_row2][2]^key_block[xor_row2][2]
 			output[xor_row2][3] = output[xor_row2][3]^key_block[xor_row2][3]
+		#end of loop
+
 
 	#=============================================
-	# end with row shift and XOR
+	# end with row shift 
 	for shift_row in range(0,4):
 		for shift_amount in range(0,shift_row):
 			output[shift_row].append(output[shift_row].pop(0))
+
 	for xor_row3 in range(0,4):
 		output[xor_row3][0] = output[xor_row3][0]^key_block[xor_row3][0]
 		output[xor_row3][1] = output[xor_row3][1]^key_block[xor_row3][1]
@@ -153,8 +177,8 @@ def encrypt(message_block,key_block):
 
 
 	#make output a string and output
-	output_string = ''.join([''.join(str(x) for x in output[0]),''.join(str(x) for x in output[1]),''.join(str(x) for x in output[2]),''.join(str(x) for x in output[3])])
-	return output_string
+	# output_string = ''.join([''.join(str(x) for x in output[0]),''.join(str(x) for x in output[1]),''.join(str(x) for x in output[2]),''.join(str(x) for x in output[3])])
+	return output
 
 
 def decrypt(message_block,key_block):
@@ -166,11 +190,13 @@ def decrypt(message_block,key_block):
 						message_block[xor_row3][3]^key_block[xor_row3][3]
 			])
 
+
 	for shift_row in range(0,4):
 		for shift_amount in range(0,shift_row):
 			output[shift_row].insert(0,output[shift_row].pop(3))
+
 	#decrypt goes in reverse
-	for TenLoops in range(0,10):
+	for NineLoops in range(0,9):
 		#STEP 1: start with XOR
 		for xor_row2 in range(0,4):
 			output[xor_row2][0] = output[xor_row2][0]^key_block[xor_row2][0]
@@ -182,37 +208,38 @@ def decrypt(message_block,key_block):
 		#STEP 2: column mixer
 		#encryped * inverse matrix = reverse
 		inverse_matrix = [[-4/35,3/35,-11/35,17/35],[17/35,-4/35,3/35,-11/35],[-11/35,17/35,-4/35,3/35],[3/35,-11/35,17/35,-4/35]]
-		for multiply_column in range(0,4):
-			#matrix multiplication
-			one_column = [output[0][multiply_column],output[1][multiply_column],output[2][multiply_column],output[3][multiply_column]]
-			output[0][multiply_column] = round((one_column[0]*inverse_matrix[0][0])+(one_column[1]*inverse_matrix[0][1])+(one_column[2]*inverse_matrix[0][2])+(one_column[3]*inverse_matrix[0][3]))
-			output[1][multiply_column] = round((one_column[0]*inverse_matrix[1][0])+(one_column[1]*inverse_matrix[1][1])+(one_column[2]*inverse_matrix[1][2])+(one_column[3]*inverse_matrix[1][3]))
-			output[2][multiply_column] = round((one_column[0]*inverse_matrix[2][0])+(one_column[1]*inverse_matrix[2][1])+(one_column[2]*inverse_matrix[2][2])+(one_column[3]*inverse_matrix[2][3]))
-			output[3][multiply_column] = round((one_column[0]*inverse_matrix[3][0])+(one_column[1]*inverse_matrix[3][1])+(one_column[2]*inverse_matrix[3][2])+(one_column[3]*inverse_matrix[3][3]))
-		#STEP 3: row shifter
+		output = multiply_matrix(inverse_matrix,output)
+
+			#STEP 3: row shifter
 		for shift_row in range(0,4):
 			for shift_amount in range(0,shift_row):
 				output[shift_row].insert(0,output[shift_row].pop(3))
+		#end of loop
+
+
 	#STEP 4: XOR key and ascii text
-	for xor_row in range(0,4):
-		output[xor_row2][0] = output[xor_row][0]^key_block[xor_row][0]
-		output[xor_row2][1] = output[xor_row][1]^key_block[xor_row][1]
-		output[xor_row2][2] = output[xor_row][2]^key_block[xor_row][2]
-		output[xor_row2][3] = output[xor_row][3]^key_block[xor_row][3]
+	for xor_row2 in range(0,4):
+		output[xor_row2][0] = output[xor_row2][0]^key_block[xor_row2][0]
+		output[xor_row2][1] = output[xor_row2][1]^key_block[xor_row2][1]
+		output[xor_row2][2] = output[xor_row2][2]^key_block[xor_row2][2]
+		output[xor_row2][3] = output[xor_row2][3]^key_block[xor_row2][3]
+
 
 	original_message = []
 	#STEP 5 :convert to ascii
+
 	for ascii_row in range(0,4):
 		for ascii_column in range(0,4):
-			print(output)
+
 			original_message.append(chr(output[ascii_row][ascii_column]))
+	
+
 	return ''.join(original_message)
+
 
 message=input('enter message: ')
 
 cipher = AES(message,'1')
-print(cipher)
 
-print('===now decrypt===')
 original=AES(cipher,'0')
 print(original)

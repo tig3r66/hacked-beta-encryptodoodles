@@ -3,58 +3,75 @@
 import random
 text = input("Enter code: ")
 
-# for encrypting text
-def encrypt(text):
-    length = len(text)
 
-    alphanumeric_numbers = []
-    # change ASCII numbers to alphanumeric numbers
+# for coding text
+def crypt(text):
+
+    length = len(text)
+    alphanumerical_numbers = []
+
+    # change text letters to alphanumeric numbers
     for n in range(length):
-        a = text[n]
-        alphanumeric_numbers.append(ord(a) - 97)
-    print(alphanumeric_numbers)
+        text_letters = text[n]
+        alphanumerical_numbers.append(ord(text_letters) - 97)
+
+    # print(alphanumerical_numbers)
 
     key = []
-    # shift conditions, convert to integer
+
+    # random key generator
     for n in range(length):
         key.append(random.randint(0,25))
-    print(key)
 
-    x = []
+    # print(key)
+
+    ascii_values = []
+
+    # space condition, convert to ASCII values
     for i in range(length):
-        if alphanumeric_numbers[i] != -65:
-            x.append((alphanumeric_numbers[i] + key[i])%26 + 97)
+        if alphanumerical_numbers[i] != -65:
+            ascii_values.append((alphanumerical_numbers[i] + key[i])%26 + 97)
         else:
-            x.append(-65+97)
-    print(x)
+            ascii_values.append(-65+97)
 
-    # convert from ASCII numerals to corresponding characters
-    encrypted_letters = ''.join(chr(i) for i in x)
+    # print(x)
+
+    # convert from ASCII values to corresponding characters
+    encrypted_letters = ''.join(chr(i) for i in ascii_values)
     print(encrypted_letters)
 
-
+    # code for decrypting text
     def decrypt(encrypted_letters, key, length):
 
-    # Convert encrypted_letters to ASCII values
-        alphanumeric_numbers = []
+        # Convert encrypted_letters to ASCII values
+        ascii_values = []
         for i in range(length):
-            alphanumeric_numbers.append(ord(encrypted_letters[i]))
-        print(alphanumeric_numbers)
+            ascii_values.append(ord(encrypted_letters[i]))
+        # print(ascii_values)
 
-    # Subtract key from ASCII values
-        x = []
+        # Subtract key from ASCII values, convert to decrypted alphanumerical
+        decrypted_alphanumerical = []
         for i in range(length):
-            if alphanumeric_numbers[i] != 32:
-                if alphanumeric_numbers[i] - key[i]-97 < 0:
-                    x.append(alphanumeric_numbers[i] - key[i]-97+26)
+            if ascii_values[i] != 32:
+                if ascii_values[i] - key[i]-97 < 0:
+                    decrypted_alphanumerical.append(ascii_values[i] - key[i]-97+26)
                 else:
-                    x.append(alphanumeric_numbers[i] - key[i]-97)
+                    decrypted_alphanumerical.append(ascii_values[i] - key[i]-97)
             else:
-                x.append(-65)
-        print(x)
+                decrypted_alphanumerical.append(-65)
+        # print(decrypted_alphanumerical)
 
+        # Convert
+        for i in range(length):
+            decrypted_alphanumerical[i] = decrypted_alphanumerical[i]+97
+        # print(decrypted_alphanumerical)
 
+        for i in range(length):
+            decrypted_letters = ''.join(chr(i) for i in decrypted_alphanumerical)
+        print(decrypted_letters)
+
+        #convert from ASCII values to letters
     decrypt(encrypted_letters, key, length)
 
-encrypt(text)
+crypt(text)
 
