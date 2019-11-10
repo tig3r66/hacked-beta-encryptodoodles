@@ -2,6 +2,11 @@
 
 text = input('message to encode: ')
 shift = int(input('enter shift: '))
+key = list(input('enter key: '))
+
+
+
+
 
 #function to do caesar cipher
 
