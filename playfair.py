@@ -1,3 +1,6 @@
+# Implements the playfair encryption algorithm. Requires the string module to
+# be imported.
+
 def validate_key(key_in):
     """Description: Validates a potential key from user input to use in the
     playfair cipher. For a given input key, if there are invalid characters,
@@ -378,6 +381,7 @@ def decrypt(keyword, user_in):
     validated_key = validate_key(keyword)
     key_table = generate_key_table(validated_key)
     processed_text = validate_plaintext(user_in)
+    # indices = get_space_indices(user_in)
     good_processed_text = split_text(processed_text)
 
     decrypted_message = []
@@ -394,16 +398,18 @@ def decrypt(keyword, user_in):
             decrypted_char1, decrypted_char2 = decrypt_rectangle(i, key_table)
             decrypted_message.append(decrypted_char1)
             decrypted_message.append(decrypted_char2)
+    # for i in indices:
+    #     decrypted_message.insert(i, ' ')
     return ''.join(decrypted_message)
 
 
 if __name__ == "__main__":
     import string
 
-    key_word = input("Enter key> ")
-    encrypted_text = input("Enter encrypted text: ")
-    print(decrypt(key_word, encrypted_text))
-
     # key_word = input("Enter key> ")
-    # plaintext = input("Enter plaintext: ")
-    # print(encrypt(key_word, plaintext))
+    # encrypted_text = input("Enter encrypted text: ")
+    # print(decrypt(key_word, encrypted_text))
+
+    key_word = input("Enter key> ")
+    plaintext = input("Enter plaintext: ")
+    print(encrypt(key_word, plaintext))
