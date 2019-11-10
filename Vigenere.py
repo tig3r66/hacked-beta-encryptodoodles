@@ -1,5 +1,9 @@
 # This is the Vigenere Cipher
 
+# Note from Eddie: You duplicate the function in encrypt() and decrypt().
+# Consider having a separate function outside of the function and call these
+# functions in the function. Will look cleaner :)
+
 def encrypt():
     """Description: Prompt user for key, convert to numbers, then convert to
     alphanumeric scale
@@ -9,17 +13,18 @@ def encrypt():
     key_letter = list(input('Enter key: '))
     key_num = [ord(x)-96 for x in key_letter]
 
-    # function to do caesar cipher
-    def shiftletter(shift, letter):
+    def shift_letter(shift, letter):
+        """Performs Caesar cipher
+        """
         # convert all letters to lowercase
-        lowerletter = letter
+        lower_letter = letter
 
         # make sure to code for the space case
-        if ord(lowerletter) == 32:
+        if ord(lower_letter) == 32:
             new_letter = ' '
         else:
             # change shift the number on the alphanumeric scale
-            shift_num = (ord(lowerletter) + shift - 96)%26
+            shift_num = (ord(lower_letter) + shift - 96)%26
             #letter z is 26, not 0
             if shift_num == 0:
                 shift_num = 26
@@ -31,8 +36,8 @@ def encrypt():
     spacecount = 0
     # relates values in text to values in key using index
     for i in range(len(text)):
-        # generates new letter in text from key using shiftletter(exclude spaces from key conversion)
-        new_letter = shiftletter(key_num[(i-spacecount) % len(key_num)], text[i])
+        # generates new letter in text from key using shift_letter(exclude spaces from key conversion)
+        new_letter = shift_letter(key_num[(i-spacecount) % len(key_num)], text[i])
         # tracks spaces
         if new_letter == ' ':
             spacecount += 1
