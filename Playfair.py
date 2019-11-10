@@ -59,7 +59,7 @@ def validate_plaintext(plaintext):
         valid = False
 
     if valid is False:
-        print("Invalid. Try again.") # change help message later
+        print("Invalid input. Try again.") # change help message later
         new_plaintext = input("Input to encrypt: ")
         new_plain_list = [i for i in new_plaintext if i in string.ascii_letters if i != 'j']
         validate_plaintext(new_plain_list)

@@ -1,18 +1,21 @@
 import pyperclip
+import time
+import sys
+import random
+import string
+import importlib
+import Readtxt
 import Enigma
 import Caesar
-import Readtxt
 import Vigenere
-import playfair
-import importlib
-# import AES
+import Playfair
 
 
 def get_text_type():
     text_type = input('\nOption 1: you have a .txt file to encrypt/decrypt\n'
         'Option 2: you wish to enter a message to encrypt/decrypt\n'
         'Enter 1 or 2: ')
-    while (text_type.isdigit() is False) or (int(text_type) < 0) or (int(text_type) > 5):
+    while (text_type.isdigit() is False) or (int(text_type) < 0) or (int(text_type) > 2):
         print("\nInvalid selection. Please try again.")
         text_type = input('Option 1: you have a .txt file to encrypt/decrypt\n'
         'Option 2: you wish to enter a message to encrypt/decrypt\n'
@@ -23,7 +26,7 @@ def get_text_type():
 def get_cypher_type():
     CypherType = input('Option 1: encryption\nOption 2: decryption\n'
                        'Enter 1 or 2: ')
-    while (CypherType.isdigit() is False) or (int(CypherType) < 0) or (int(CypherType) > 5):
+    while (CypherType.isdigit() is False) or (int(CypherType) < 0) or (int(CypherType) > 2):
         print("\nInvalid selection. Please try again.")
         CypherType = input('Option 1: encryption\nOption 2: decryption\n'
                            'Enter 1 or 2: ')
@@ -33,10 +36,27 @@ def get_cypher_type():
 def get_encryption_type():
     encryptionType = input("Enter a cipher option number: ")
     while ((encryptionType.isdecimal() is False)
-        or (int(encryptionType) < 0 or int(encryptionType) > 5)):
+        or (int(encryptionType) < 0 or int(encryptionType) > 4)):
             print("Invalid input.")
             encryptionType = input("Enter a cipher option number: ").strip()
     return int(encryptionType)
+
+
+def print_triple_dots():
+    for i in '...':
+        time.sleep(0.3)
+        sys.stdout.write(i)
+        sys.stdout.flush()
+    time.sleep(0.3)
+    print()
+
+
+def print_text_cool(output):
+    for i in output:
+        sys.stdout.write(i)
+        sys.stdout.flush()
+        time.sleep(0.15)
+    print()
 
 
 if __name__ == '__main__':
@@ -68,7 +88,7 @@ if __name__ == '__main__':
 
         # picking the encryption method
         encryption_dict = {1: 'Caesar', 2: 'Vigenere', 3: 'Enigma',
-                           4: 'AES', 5: 'playfair'}
+                           4: 'Playfair'}
         print('\nCipher Options')
         for k, v in encryption_dict.items():
             print(f'  {k}: {v}')
@@ -81,7 +101,15 @@ if __name__ == '__main__':
             output = encryptionTypeVal.decrypt(text)
 
         pyperclip.copy(output)
-        print(f'\nOutput: {output}\nThe text has been copied to your clipboard :)')
+
+        print("Starting encryption", end='') if encryptionType == 1 else print("Starting decryption", end = '')
+        print_triple_dots()
+        # "animated output"
+        print(text, end='\r')
+        time.sleep(0.75)
+        print_text_cool(output)
+
+        print('The text has been copied to your clipboard :)')
 
         cont = input('Want to continue? [Y/N]: ').upper().strip()
         if cont != 'Y':
