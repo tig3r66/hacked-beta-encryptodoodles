@@ -17,8 +17,7 @@ def encrypt(text):
 
     for i in range(length):
         encrypted_nums[i]=encrypted_nums[i]%26 + 97
-        if encrypted_nums[i] == 110+shift:
-            encrypted_nums[i] = 32
+
 
     encrypted_letters = ''.join(chr(i) for i in encrypted_nums)
     print(encrypted_letters)
@@ -35,6 +34,8 @@ def decrypt(text):
 
     for i in range(length):
         decrypted_nums[i] = decrypted_nums[i] % 26 + 97
+        if decrypted_nums[i] == 110-shift:
+            decrypted_nums[i] = 32
 
     decrypted_letters = ''.join(chr(i) for i in decrypted_nums)
     print(decrypted_letters)
