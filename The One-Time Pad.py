@@ -23,7 +23,8 @@ def crypt(text):
     for n in range(length):
         key.append(random.randint(0,25))
 
-    # print(key)
+    print("here is the key: ")
+    print(key)
 
     ascii_values = []
 
@@ -38,6 +39,7 @@ def crypt(text):
 
     # convert from ASCII values to corresponding characters
     encrypted_letters = ''.join(chr(i) for i in ascii_values)
+    print("here are the encrypted letters: ")
     print(encrypted_letters)
 
     # code for decrypting text
@@ -68,6 +70,7 @@ def crypt(text):
 
         for i in range(length):
             decrypted_letters = ''.join(chr(i) for i in decrypted_alphanumerical)
+        print("here are the decrypted letters: ")
         print(decrypted_letters)
 
         #convert from ASCII values to letters
