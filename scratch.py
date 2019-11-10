@@ -60,9 +60,8 @@ def cont():
     button2.pack()
 
 
-# get_text_type()
-# get_cypher_type()
-get_encryption_type()
-# cont()
+def printSomething(output):
+    label = tk.Label(root, text=output)
+    label.pack()
 
 root.mainloop()
