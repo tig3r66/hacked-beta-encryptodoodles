@@ -283,7 +283,7 @@ def encrypt_rectangle(two_chars, key_table):
     return encrypted_char1, encrypted_char2
 
 
-def encrypt(keyword, user_in):
+def encrypt(user_in):
     """Description: encrypt the user input according to the playfair cipher
     algorithm.
 
@@ -295,6 +295,10 @@ def encrypt(keyword, user_in):
     Returns:
         encrypted_message (string): the encrypted message.
     """
+
+    # prompt user to input keyword
+    keyword = input('Enter keyword: ')
+
     validated_key = validate_key(keyword)
     key_table = generate_key_table(validated_key)
     processed_text = validate_plaintext(user_in)
@@ -392,7 +396,7 @@ def decrypt_rectangle(two_chars, key_table):
     return decrypted_char1, decrypted_char2
 
 
-def decrypt(keyword, user_in):
+def decrypt(user_in):
     """Description: decrypt the user input according to the playfair cipher
     algorithm.
 
@@ -404,6 +408,10 @@ def decrypt(keyword, user_in):
     Returns:
         encrypted_message (string): the encrypted message.
     """
+
+    # prompt user to input keyword
+    keyword = input('Enter keyword: ')
+
     validated_key = validate_key(keyword)
     key_table = generate_key_table(validated_key)
     processed_text = validate_plaintext(user_in)
