@@ -47,9 +47,8 @@ def encrypt():
             spacecount += 1
 
         newword = newword + newletter
-    print(newword)
+    return(newword)
 
-encrypt()
 
 def decrypt():
     keyletter = list(input('enter key: '))
@@ -92,6 +91,4 @@ def decrypt():
             spacecount += 1
 
         newword = newword + newletter
-    print(newword)
-
-decrypt()
+    return(newword)
