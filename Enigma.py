@@ -101,11 +101,4 @@ def decrypt(text):
         newword += shiftletter(key * -1, letter)
     return newword
 
-type = input('what do you want to do, type 1 for encryption, type 2 for decryption: ')
-if type == '1':
-    print(encrypt(input('What is the unencrypted message? ')))
-elif type == '2':
-    print(decrypt(input('What is the encrypted message? ')))
-else:
-    print('you are bad')
 

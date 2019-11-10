@@ -1,23 +1,19 @@
 # This is a Caesar Cipher
 import numpy
 
-# variables for text, convert to lowercase
-text = input("Enter your code: ")
-text = text.lower()
-length = len(text)
-
-# shift conditions, convert to integer
-shift = input("Enter shift number: ")
-
-while shift.isnumeric() == False:
-    print("Please enter a number for the shift:")
-    shift = input()
-
-shift = int(shift) % 26
-
-
 # for encrypting text
 def encrypt(text):
+    length = len(text)
+
+    # shift conditions, convert to integer
+    shift = input("Enter shift number: ")
+
+    while shift.isnumeric() == False:
+        print("Please enter a number for the shift:")
+        shift = input()
+
+    shift = int(shift) % 26
+
     alphanumeric_numbers = []
     encrypted_numbers = []
 
@@ -45,11 +41,19 @@ def encrypt(text):
     print(encrypted_letters)
 
 
-encrypt(text)
-
-
 # for decrypting text
 def decrypt(text):
+    length = len(text)
+
+    # shift conditions, convert to integer
+    shift = input("Enter shift number: ")
+
+    while shift.isnumeric() == False:
+        print("Please enter a number for the shift:")
+        shift = input()
+
+    shift = int(shift) % 26
+
     alphanumeric_numbers = []
     decrypted_numbers = []
 
@@ -76,5 +80,3 @@ def decrypt(text):
     decrypted_letters = ''.join(chr(i) for i in decrypted_numbers)
     print(decrypted_letters)
 
-
-decrypt(text)
