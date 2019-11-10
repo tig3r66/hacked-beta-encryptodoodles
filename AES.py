@@ -80,10 +80,49 @@ def encrypt(message_block,key_block):
 	output = []
 	#STEP 1: XOR key and ascii text
 	for xor_row in range(0,4):
-		output.append([message_block[xor_row][0]^key_block[xor_row][0],
-						message_block[xor_row][1]^key_block[xor_row][1]
-						message_block[xor_row][2]^key_block[xor_row][2]
+		output.append([ message_block[xor_row][0]^key_block[xor_row][0],
+						message_block[xor_row][1]^key_block[xor_row][1],
+						message_block[xor_row][2]^key_block[xor_row][2],
 						message_block[xor_row][3]^key_block[xor_row][3]
 			])
+	#=====================================
+	#STEP 2: 10 loops of sub, row shift, column mix, and XOR
+	for 10_loops in range(0,10):
+
+		#STEP 2-i row shift, 1st row, now shift, 2nd row shift by 1
+		for shift_row in range(0,4):
+			for shift_amount in range(0,shift_row):
+				output[shift_row].append(output[shift_row].pop(0))
+
+		#STEP 2-ii column mixer
+		matrix = [[2,3,1,1],[1,2,3,1],[1,1,2,3],[3,1,1,2]]
+		for multiply_column in range(0,4):
+			#matrix multiplication
+			one_column = [output[0][multiply_column],output[1][multiply_column],output[2][multiply_column],output[3][multiply_column]]
+			output[0][multiply_column] = (one_column[0]*matrix[0][0])+(one_column[1]*matrix[0][1])+(one_column[2]*matrix[0][2])+(one_column[3]*matrix[0][3])
+			output[1][multiply_column] = (one_column[0]*matrix[1][0])+(one_column[1]*matrix[1][1])+(one_column[2]*matrix[1][2])+(one_column[3]*matrix[1][3])
+			output[2][multiply_column] = (one_column[0]*matrix[2][0])+(one_column[1]*matrix[2][1])+(one_column[2]*matrix[2][2])+(one_column[3]*matrix[2][3])
+			output[3][multiply_column] = (one_column[0]*matrix[3][0])+(one_column[1]*matrix[3][1])+(one_column[2]*matrix[3][2])+(one_column[3]*matrix[3][3])
+
+		#STEP 2-iii XOR again
+		for xor_row2 in range(0,4):
+		output.append([ message_block[xor_row2][0]^key_block[xor_row2][0],
+						message_block[xor_row2][1]^key_block[xor_row2][1],
+						message_block[xor_row2][2]^key_block[xor_row2][2],
+						message_block[xor_row2][3]^key_block[xor_row2][3]
+			])
+
+	#make output a string and output
+
+	#=============================================
 def decrypt(cipher,key):
-	pass
+	#column shift
+	#encryped * inverse matrix = reverse
+	inverse_matrix = [[-4/35,3/35,-11/35,17/35],[17/35,-4/35,3/35,-11/35],[-11/35,17/35,-4/35,3/35],[3/35,-11/35,17/35,-4/35]]
+	for multiply_column in range(0,4):
+		#matrix multiplication
+		one_column = [output[0][multiply_column],output[1][multiply_column],output[2][multiply_column],output[3][multiply_column]]
+		output[0][multiply_column] = round((one_column[0]*inverse_matrix[0][0])+(one_column[1]*inverse_matrix[0][1])+(one_column[2]*inverse_matrix[0][2])+(one_column[3]*inverse_matrix[0][3]))
+		output[1][multiply_column] = round((one_column[0]*inverse_matrix[1][0])+(one_column[1]*inverse_matrix[1][1])+(one_column[2]*inverse_matrix[1][2])+(one_column[3]*inverse_matrix[1][3]))
+		output[2][multiply_column] = round((one_column[0]*inverse_matrix[2][0])+(one_column[1]*inverse_matrix[2][1])+(one_column[2]*inverse_matrix[2][2])+(one_column[3]*inverse_matrix[2][3]))
+		output[3][multiply_column] = round((one_column[0]*inverse_matrix[3][0])+(one_column[1]*inverse_matrix[3][1])+(one_column[2]*inverse_matrix[3][2])+(one_column[3]*inverse_matrix[3][3]))
