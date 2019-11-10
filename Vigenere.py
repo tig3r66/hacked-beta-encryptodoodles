@@ -8,7 +8,7 @@ def encrypt():
     """Description: Prompt user for key, convert to numbers, then convert to
     alphanumeric scale
     """
-    text = input('Enter code: ').lower()
+    text = text.lower()
 
     key_letter = list(input('Enter key: '))
     key_num = [ord(x)-96 for x in key_letter]
@@ -52,7 +52,7 @@ def decrypt():
     key_num = [ord(x) - 96 for x in key_letter]
 
     def shift_letter(shift, letter):
-        """Description: performs Caesar cypther encryption
+        """Description: performs Caesar encryption
         """
         # convert all letters to lowercase
         lower_letter = letter.lower()
