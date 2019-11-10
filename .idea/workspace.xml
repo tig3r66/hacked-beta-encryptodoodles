@@ -29,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Caesar.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+            <state relative-caret-position="368">
+              <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -88,11 +88,6 @@
               <item name="hacked-beta-encryptodoodles" type="b2602c69:ProjectViewProjectNode" />
               <item name="hacked-beta-encryptodoodles" type="462c0819:PsiDirectoryNode" />
               <item name="Caesar Cipher" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hacked-beta-encryptodoodles" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hacked-beta-encryptodoodles" type="462c0819:PsiDirectoryNode" />
-              <item name="Ceaser Cipher" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -186,6 +181,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24981412" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -226,8 +222,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Caesar.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+        <state relative-caret-position="368">
+          <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
         </state>
       </provider>
     </entry>
