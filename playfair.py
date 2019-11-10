@@ -66,6 +66,14 @@ def validate_plaintext(plaintext):
 
 
 def get_j_indices(plaintext):
+    """Description: for a given string input, returns a list containing the
+    indices in which the letter 'j' occurs.
+
+    Arguments:
+        plaintext (string): string used to either encode or decode.
+    Returns:
+        j_indices (list): list contains all indices in which 'j' occurs.
+    """
     j_indices = []
     count = 0
     space_removed_plaintext = [i for i in plaintext if i != ' ']
