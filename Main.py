@@ -1,3 +1,4 @@
+import pyperclip
 import Enigma
 import Caesar
 import Readtxt
@@ -51,9 +52,11 @@ if __name__ == '__main__':
 
         if encryptionType == '1':
             if CypherType == '1':
-                Caesar.encrypt(text)
+                output = Caesar.encrypt(text)
+                print(output)
             elif CypherType == '2':
-                Caesar.decrypt(text)
+                output = Caesar.decrypt(text)
+                print(output)
         elif encryptionType == '2':
             if CypherType == '1':
                 print('encrypt')
@@ -61,9 +64,11 @@ if __name__ == '__main__':
                 print('decrypt')
         elif encryptionType == '3':
             if CypherType == '1':
-                print(Enigma.encrypt(text))
+                output = Enigma.encrypt(text)
+                print(output)
             elif CypherType == '2':
-                print(Enigma.decrypt(text))
+                output = Enigma.decrypt(text)
+                print(output)
         elif encryptionType == '4':
             AES.AES(text, CypherType)
         elif encryptionType == '5':
@@ -71,6 +76,7 @@ if __name__ == '__main__':
                 print('encrypt')
             elif CypherType == '2':
                 print('decrypt')
+        pyperclip.copy(output)
 
         cont = input('Want to continue? (Y/N)').upper().strip()
         if cont != 'Y':

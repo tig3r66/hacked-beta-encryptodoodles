@@ -38,7 +38,7 @@ def encrypt(text):
 
     # convert from ASCII numerals to corresponding characters
     encrypted_letters = ''.join(chr(i) for i in encrypted_numbers)
-    print(encrypted_letters)
+    return (encrypted_letters)
 
 
 # for decrypting text
@@ -78,5 +78,5 @@ def decrypt(text):
 
     # convert from ASCII numerals to corresponding characters
     decrypted_letters = ''.join(chr(i) for i in decrypted_numbers)
-    print(decrypted_letters)
+    return (decrypted_letters)
 
