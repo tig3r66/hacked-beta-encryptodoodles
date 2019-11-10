@@ -1,5 +1,5 @@
 import Enigma
-from Caesar import encrypt, decrypt
+import Caesar
 import Readtxt
 #from AES import AES
 
@@ -15,7 +15,7 @@ if __name__ == '__main__':
             TextType = input('Enter 1 if you have the .txt file, enter 2 for onscreen message: ')
             #For txt
             if TextType == '1':
-                filename = input('What is the filename of the txt')
+                filename = input('What is the filename of the txt? ')
                 text = Readtxt.readtxt(filename)
             elif TextType == '2':
                 text = input('Input the message you want to encrypt: ')
@@ -24,16 +24,19 @@ if __name__ == '__main__':
             TextType = input('Enter 1 if you have the .txt file, enter 2 for onscreen message: ')
             #For txt
             if TextType == '1':
-                filename = input('What is the filename of the txt')
+                filename = input('What is the filename of the txt? ')
                 text = Readtxt.readtxt(filename)
             elif TextType == '2':
                 text = input('Input the message you want to decrypt: ')
         else:
             print('you are bad')
+            exit()
 
 
         #Clean up text
-        text = text.strip.
+        text = text.replace('\n', ' ').lower()
+        whitelist = 'abcdefghijklmnopqrstuvwxyz '
+        text = ''.join(filter(whitelist.__contains__, text))
 
         #picking the encryption method
         print('''
