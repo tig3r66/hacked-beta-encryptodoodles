@@ -1,11 +1,9 @@
 # This is the Vigener Cipher
 
-<<<<<<< HEAD
+
 # Prompt user for code
 text = input('Enter code: ')
 
-=======
->>>>>>> ca3135c5e35f2dca32eb599a5a4a871cb4fc3f42
 # Prompt user for key, convert to numbers, then convert to alphanumeric scale
 
 def encrypt():
