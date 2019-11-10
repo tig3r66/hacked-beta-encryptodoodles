@@ -1,100 +1,83 @@
-# This is the Vigener Cipher
-
-
-# Prompt user for code
-text = input('Enter code: ')
-
-# Prompt user for key, convert to numbers, then convert to alphanumeric scale
+# This is the Vigenere Cipher
 
 def encrypt():
-    # Prompt user for code
-    text = input('enter code: ')
+    """Description: Prompt user for key, convert to numbers, then convert to
+    alphanumeric scale
+    """
+    text = input('Enter code: ').lower()
 
-    keyletter = list(input('enter key: '))
-    keynumber = [ord(x)-96 for x in keyletter]
+    key_letter = list(input('Enter key: '))
+    key_num = [ord(x)-96 for x in key_letter]
 
     # function to do caesar cipher
     def shiftletter(shift, letter):
-
         # convert all letters to lowercase
-        lowerletter = letter.lower()
+        lowerletter = letter
 
         # make sure to code for the space case
         if ord(lowerletter) == 32:
-            newletter = ' '
-
+            new_letter = ' '
         else:
             # change shift the number on the alphanumeric scale
-            shiftnum = (ord(lowerletter) + shift - 96)%26
-
+            shift_num = (ord(lowerletter) + shift - 96)%26
             #letter z is 26, not 0
-            if shiftnum == 0:
-                shiftnum = 26
-
+            if shift_num == 0:
+                shift_num = 26
             # change the shift back into a letter
-            newletter = chr(shiftnum + 96)
+            new_letter = chr(shift_num + 96)
+        return(new_letter)
 
-        return(newletter)
-
-    newword =''
+    new_word = ''
     spacecount = 0
-
     # relates values in text to values in key using index
     for i in range(len(text)):
-
         # generates new letter in text from key using shiftletter(exclude spaces from key conversion)
-        newletter = shiftletter(keynumber[(i-spacecount) % len(keynumber)], text[i])
-
+        new_letter = shiftletter(key_num[(i-spacecount) % len(key_num)], text[i])
         # tracks spaces
-        if newletter == ' ':
+        if new_letter == ' ':
             spacecount += 1
-
-        newword = newword + newletter
-    return(newword)
+        new_word = new_word + new_letter
+    return(new_word)
 
 
 def decrypt():
-    # Prompt user for code
     text = input('enter code: ')
+    key_letter = list(input('enter key: '))
 
-    keyletter = list(input('enter key: '))
-    keynumber = [ord(x) - 96 for x in keyletter]
+    key_num = [ord(x) - 96 for x in key_letter]
 
-    # function to do caesar cipher
-    def shiftletter(shift, letter):
-
+    def shift_letter(shift, letter):
+        """Description: performs Caesar cypther encryption
+        """
         # convert all letters to lowercase
-        lowerletter = letter.lower()
+        lower_letter = letter.lower()
 
         # make sure to code for the space case
-        if ord(lowerletter) == 32:
-            newletter = ' '
-
+        if ord(lower_letter) == 32:
+            new_letter = ' '
         else:
             # change shift the number on the alphanumeric scale
-            shiftnum = (ord(lowerletter) - shift - 96) % 26
-
+            shift_num = (ord(lower_letter) - shift - 96) % 26
             # letter z is 26, not 0
-            if shiftnum == 0:
-                shiftnum = 26
-
+            if shift_num == 0:
+                shift_num = 26
             # change the shift back into a letter
-            newletter = chr(shiftnum + 96)
+            new_letter = chr(shift_num + 96)
+        return (new_letter)
 
-        return (newletter)
-
-    newword = ''
-    spacecount = 0
+    new_word = ''
+    space_count = 0
 
     # relates values in text to values in key using index
     for i in range(len(text)):
-
         # generates new letter in text from key using shiftletter(exclude spaces from key conversion)
-        newletter = shiftletter(keynumber[(i - spacecount) % len(keynumber)], text[i])
-
-        # tracks spaces
+        newletter = shift_letter(key_num[(i - space_count) % len(key_num)], text[i])
+        # tracking spaces
         if newletter == ' ':
-            spacecount += 1
+            space_count += 1
+        new_word = new_word + newletter
+    return new_word
 
-        newword = newword + newletter
-    return(newword)
+
+if __name__ == "__main__":
+    print(encrypt())
