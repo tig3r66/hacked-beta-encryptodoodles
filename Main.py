@@ -2,6 +2,7 @@ import pyperclip
 import Enigma
 import Caesar
 import Readtxt
+import Vigenere
 #from AES import AES
 
 if __name__ == '__main__':
@@ -59,9 +60,11 @@ if __name__ == '__main__':
                 print(output)
         elif encryptionType == '2':
             if CypherType == '1':
-                print('encrypt')
+                output = Vigenere.encrypt()
+                print(output)
             elif CypherType == '2':
-                print('decrypt')
+                output = Vigenere.decrypt()
+                print(output)
         elif encryptionType == '3':
             if CypherType == '1':
                 output = Enigma.encrypt(text)
