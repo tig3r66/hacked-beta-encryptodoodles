@@ -76,10 +76,11 @@ if __name__ == '__main__':
                 print('encrypt')
             elif CypherType == '2':
                 print('decrypt')
+        else:
+            print('you are bad')
         pyperclip.copy(output)
+        print('The text has been copied to your clipboard :)')
 
         cont = input('Want to continue? (Y/N)').upper().strip()
         if cont != 'Y':
             flag = False
-
-
