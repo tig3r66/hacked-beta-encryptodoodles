@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dacaa8d1-b7d9-4145-bfa9-196311ea0118" name="Default Changelist" comment="" />
+    <list default="true" id="dacaa8d1-b7d9-4145-bfa9-196311ea0118" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Readtxt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testing_txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,14 +30,36 @@
         <entry file="file://$PROJECT_DIR$/Enigma.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="53">
-              <caret line="80" column="69" lean-forward="true" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
+              <caret line="80" column="69" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Readtxt.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Main.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/testing_txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -55,6 +82,8 @@
         <option value="$PROJECT_DIR$/Caesar.py" />
         <option value="$PROJECT_DIR$/Enigma.py" />
         <option value="$PROJECT_DIR$/Main.py" />
+        <option value="$PROJECT_DIR$/Readtxt.py" />
+        <option value="$PROJECT_DIR$/testing_txt" />
       </list>
     </option>
   </component>
@@ -76,6 +105,11 @@
             <path>
               <item name="hacked-beta-encryptodoodles" type="b2602c69:ProjectViewProjectNode" />
               <item name="hacked-beta-encryptodoodles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hacked-beta-encryptodoodles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hacked-beta-encryptodoodles" type="462c0819:PsiDirectoryNode" />
+              <item name="playfair" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -170,12 +204,12 @@
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24983074" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983074" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2241993" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2241993" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -203,7 +237,7 @@
     <entry file="file://$PROJECT_DIR$/Enigma.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="53">
-          <caret line="80" column="69" lean-forward="true" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
+          <caret line="80" column="69" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -215,7 +249,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playfair/Testing_txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Readtxt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing_txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
