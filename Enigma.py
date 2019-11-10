@@ -57,7 +57,7 @@ def list_to_key(newlist,rotor_order):
 
 def get_valid_rotor_input():
     rotor_ord = int(input('Pick rotor 1, between 1 and 5: ')) - 1
-    while not ((0 < rotor_ord) and (rotor_ord < 6)):
+    while (rotor_ord < 0) and (rotor_ord > 6):
         print("Input must lie in the range [1, 5].")
         rotor_ord = int(input('Pick rotor 1, between 1 and 5: ')) - 1
     return rotor_ord
