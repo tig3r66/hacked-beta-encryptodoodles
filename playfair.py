@@ -1,5 +1,7 @@
 # Implements the playfair encryption algorithm. Requires the string module to
 # be imported.
+import string
+
 
 def validate_key(key_in):
     """Description: Validates a potential key from user input to use in the
@@ -49,7 +51,7 @@ def validate_plaintext(plaintext):
         lowercase version of the input.
     """
     valid = True
-    plain_list = ''.join([i for i in plaintext if i in string.ascii_letters])
+    plain_list = ''.join([i for i in plaintext if i in string.ascii_letters if i != 'j'])
 
     if len(plain_list) % 2 == 1:
         plain_list += 'q'
@@ -59,10 +61,29 @@ def validate_plaintext(plaintext):
     if valid is False:
         print("Invalid. Try again.") # change help message later
         new_plaintext = input("Input to encrypt: ")
-        new_plain_list = [i for i in new_plaintext if i in string.ascii_letters]
+        new_plain_list = [i for i in new_plaintext if i in string.ascii_letters if i != 'j']
         validate_plaintext(new_plain_list)
         return ''.join(new_plain_list)
     return plain_list.lower()
+
+
+def get_j_indices(plaintext):
+    """Description: for a given string input, returns a list containing the
+    indices in which the letter 'j' occurs.
+
+    Arguments:
+        plaintext (string): string used to either encode or decode.
+    Returns:
+        j_indices (list): list contains all indices in which 'j' occurs.
+    """
+    j_indices = []
+    count = 0
+    space_removed_plaintext = [i for i in plaintext if i != ' ']
+    for i in space_removed_plaintext:
+        if i == 'j':
+            j_indices.append(count)
+        count += 1
+    return j_indices
 
 
 def get_space_indices(plaintext):
@@ -264,22 +285,24 @@ def encrypt_rectangle(two_chars, key_table):
     return encrypted_char1, encrypted_char2
 
 
-def encrypt(keyword, user_in):
+def encrypt(user_in):
     """Description: encrypt the user input according to the playfair cipher
-    algorithm.
+    algorithm. Prompts for keyword.
 
     Arguments:
-        keyword (string): a keyword (will be validated). If not valid, the
-        user will be promped to enter a new keyword.
         user_in (string): user input to encrypt (note that user_in is
         validated in this function).
     Returns:
         encrypted_message (string): the encrypted message.
     """
+    keyword = input("Keyword: ")
     validated_key = validate_key(keyword)
     key_table = generate_key_table(validated_key)
     processed_text = validate_plaintext(user_in)
     good_processed_text = split_text(processed_text)
+
+    space_indices = get_space_indices(user_in)
+    j_indices = get_j_indices(user_in)
 
     encrypted_message = []
     for i in good_processed_text:
@@ -295,6 +318,10 @@ def encrypt(keyword, user_in):
             encrypted_char1, encrypted_char2 = encrypt_rectangle(i, key_table)
             encrypted_message.append(encrypted_char1)
             encrypted_message.append(encrypted_char2)
+    for i in j_indices:
+        encrypted_message.insert(i, 'j')
+    for i in space_indices:
+        encrypted_message.insert(i, ' ')
     return ''.join(encrypted_message)
 
 
@@ -366,23 +393,25 @@ def decrypt_rectangle(two_chars, key_table):
     return decrypted_char1, decrypted_char2
 
 
-def decrypt(keyword, user_in):
+def decrypt(user_in):
     """Description: decrypt the user input according to the playfair cipher
-    algorithm.
+    algorithm. Prompts for key input.
 
     Arguments:
-        keyword (string): a keyword (will be validated). If not valid, the
-        user will be promped to enter a new keyword.
         user_in (string): user input to encrypt (note that user_in is
         validated in this function).
     Returns:
         encrypted_message (string): the encrypted message.
     """
+    keyword = input('Enter keyword: ')
+
     validated_key = validate_key(keyword)
     key_table = generate_key_table(validated_key)
     processed_text = validate_plaintext(user_in)
-    # indices = get_space_indices(user_in)
     good_processed_text = split_text(processed_text)
+
+    j_indices = get_j_indices(user_in)
+    space_indices = get_space_indices(user_in)
 
     decrypted_message = []
     for i in good_processed_text:
@@ -398,18 +427,16 @@ def decrypt(keyword, user_in):
             decrypted_char1, decrypted_char2 = decrypt_rectangle(i, key_table)
             decrypted_message.append(decrypted_char1)
             decrypted_message.append(decrypted_char2)
-    # for i in indices:
-    #     decrypted_message.insert(i, ' ')
+    for i in j_indices:
+        decrypted_message.insert(i, 'j')
+    for i in space_indices:
+        decrypted_message.insert(i, ' ')
     return ''.join(decrypted_message)
 
 
 if __name__ == "__main__":
-    import string
-
-    # key_word = input("Enter key> ")
     # encrypted_text = input("Enter encrypted text: ")
-    # print(decrypt(key_word, encrypted_text))
+    # print(decrypt(encrypted_text))
 
-    key_word = input("Enter key> ")
     plaintext = input("Enter plaintext: ")
-    print(encrypt(key_word, plaintext))
+    print(encrypt(plaintext))

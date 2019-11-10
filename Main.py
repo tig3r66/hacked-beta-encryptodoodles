@@ -2,6 +2,8 @@ import pyperclip
 import Enigma
 import Caesar
 import Readtxt
+import Vigenere
+import playfair
 #from AES import AES
 
 if __name__ == '__main__':
@@ -59,9 +61,11 @@ if __name__ == '__main__':
                 print(output)
         elif encryptionType == '2':
             if CypherType == '1':
-                print('encrypt')
+                output = Vigenere.encrypt()
+                print(output)
             elif CypherType == '2':
-                print('decrypt')
+                output = Vigenere.decrypt()
+                print(output)
         elif encryptionType == '3':
             if CypherType == '1':
                 output = Enigma.encrypt(text)
@@ -73,13 +77,16 @@ if __name__ == '__main__':
             AES.AES(text, CypherType)
         elif encryptionType == '5':
             if CypherType == '1':
-                print('encrypt')
+                output = playfair.encrypt(text)
+                print(output)
             elif CypherType == '2':
-                print('decrypt')
+                output = playfair.decrypt(text)
+                print(output)
+        else:
+            print('you are bad')
         pyperclip.copy(output)
+        print('The text has been copied to your clipboard :)')
 
         cont = input('Want to continue? (Y/N)').upper().strip()
         if cont != 'Y':
             flag = False
-
-
