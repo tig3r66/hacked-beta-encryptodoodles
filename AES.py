@@ -209,10 +209,10 @@ def decrypt(message_block,key_block):
 	return ''.join(original_message)
 
 message=input('enter message: ')
-eORd = input('press 1 for encrypt: ')
-cipher = AES(message,eORd)
+
+cipher = AES(message,'1')
 print(cipher)
 
 print('===now decrypt===')
-original=AES(cipher,0)
+original=AES(cipher,'0')
 print(original)
