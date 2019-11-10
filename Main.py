@@ -3,12 +3,12 @@ import time
 import sys
 import random
 import string
+import importlib
+import Readtxt
 import Enigma
 import Caesar
-import Readtxt
 import Vigenere
 import Playfair
-import importlib
 
 
 def get_text_type():
