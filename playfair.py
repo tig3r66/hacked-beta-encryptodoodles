@@ -49,7 +49,7 @@ def validate_plaintext(plaintext):
         lowercase version of the input.
     """
     valid = True
-    plain_list = ''.join([i for i in plaintext if i in string.ascii_letters])
+    plain_list = ''.join([i for i in plaintext if i in string.ascii_letters if i != 'j'])
 
     if len(plain_list) % 2 == 1:
         plain_list += 'q'
@@ -59,10 +59,21 @@ def validate_plaintext(plaintext):
     if valid is False:
         print("Invalid. Try again.") # change help message later
         new_plaintext = input("Input to encrypt: ")
-        new_plain_list = [i for i in new_plaintext if i in string.ascii_letters]
+        new_plain_list = [i for i in new_plaintext if i in string.ascii_letters if i != 'j']
         validate_plaintext(new_plain_list)
         return ''.join(new_plain_list)
     return plain_list.lower()
+
+
+def get_j_indices(plaintext):
+    j_indices = []
+    count = 0
+    space_removed_plaintext = [i for i in plaintext if i != ' ']
+    for i in space_removed_plaintext:
+        if i == 'j':
+            j_indices.append(count)
+        count += 1
+    return j_indices
 
 
 def get_space_indices(plaintext):
@@ -281,6 +292,9 @@ def encrypt(keyword, user_in):
     processed_text = validate_plaintext(user_in)
     good_processed_text = split_text(processed_text)
 
+    space_indices = get_space_indices(user_in)
+    j_indices = get_j_indices(user_in)
+
     encrypted_message = []
     for i in good_processed_text:
         if in_same_row(i, key_table):
@@ -295,6 +309,10 @@ def encrypt(keyword, user_in):
             encrypted_char1, encrypted_char2 = encrypt_rectangle(i, key_table)
             encrypted_message.append(encrypted_char1)
             encrypted_message.append(encrypted_char2)
+    for i in j_indices:
+        encrypted_message.insert(i, 'j')
+    for i in space_indices:
+        encrypted_message.insert(i, ' ')
     return ''.join(encrypted_message)
 
 
@@ -381,8 +399,10 @@ def decrypt(keyword, user_in):
     validated_key = validate_key(keyword)
     key_table = generate_key_table(validated_key)
     processed_text = validate_plaintext(user_in)
-    # indices = get_space_indices(user_in)
     good_processed_text = split_text(processed_text)
+
+    j_indices = get_j_indices(user_in)
+    space_indices = get_space_indices(user_in)
 
     decrypted_message = []
     for i in good_processed_text:
@@ -398,18 +418,20 @@ def decrypt(keyword, user_in):
             decrypted_char1, decrypted_char2 = decrypt_rectangle(i, key_table)
             decrypted_message.append(decrypted_char1)
             decrypted_message.append(decrypted_char2)
-    # for i in indices:
-    #     decrypted_message.insert(i, ' ')
+    for i in j_indices:
+        decrypted_message.insert(i, 'j')
+    for i in space_indices:
+        decrypted_message.insert(i, ' ')
     return ''.join(decrypted_message)
 
 
 if __name__ == "__main__":
     import string
 
-    # key_word = input("Enter key> ")
-    # encrypted_text = input("Enter encrypted text: ")
-    # print(decrypt(key_word, encrypted_text))
-
     key_word = input("Enter key> ")
-    plaintext = input("Enter plaintext: ")
-    print(encrypt(key_word, plaintext))
+    encrypted_text = input("Enter encrypted text: ")
+    print(decrypt(key_word, encrypted_text))
+
+    # key_word = input("Enter key> ")
+    # plaintext = input("Enter plaintext: ")
+    # print(encrypt(key_word, plaintext))
