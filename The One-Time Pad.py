@@ -17,58 +17,44 @@ def encrypt(text):
     key = []
     # shift conditions, convert to integer
     for n in range(length):
-        key.append(random.randint(0,26))
+        key.append(random.randint(0,25))
     print(key)
 
     x = []
     for i in range(length):
         if alphanumeric_numbers[i] != -65:
-            x.append(alphanumeric_numbers[i] + key[i])
+            x.append((alphanumeric_numbers[i] + key[i])%26 + 97)
         else:
-            x.append(-65)
+            x.append(-65+97)
     print(x)
 
+    # convert from ASCII numerals to corresponding characters
+    encrypted_letters = ''.join(chr(i) for i in x)
+    print(encrypted_letters)
 
-    # # convert from alphanumeric scale to encrypted ASCII numerals
-    # for i in range(length):
-    #     if encrypted_numbers[i] == -65:
-    #         encrypted_numbers[i] = 32
-    #     else:
-    #         encrypted_numbers[i] = encrypted_numbers[i] % 26 + 97
-    #
-    # # convert from ASCII numerals to corresponding characters
-    # encrypted_letters = ''.join(chr(i) for i in encrypted_numbers)
-    # return (encrypted_letters)
+
+    def decrypt(encrypted_letters, key, length):
+
+    # Convert encrypted_letters to ASCII values
+        alphanumeric_numbers = []
+        for i in range(length):
+            alphanumeric_numbers.append(ord(encrypted_letters[i]))
+        print(alphanumeric_numbers)
+
+    # Subtract key from ASCII values
+        x = []
+        for i in range(length):
+            if alphanumeric_numbers[i] != 32:
+                if alphanumeric_numbers[i] - key[i]-97 < 0:
+                    x.append(alphanumeric_numbers[i] - key[i]-97+26)
+                else:
+                    x.append(alphanumeric_numbers[i] - key[i]-97)
+            else:
+                x.append(-65)
+        print(x)
+
+
+    decrypt(encrypted_letters, key, length)
+
 encrypt(text)
 
-    # while shift.isnumeric() == False:
-    #     print("Please enter a number for the shift:")
-    #     shift = input()
-    #
-    # shift = int(shift) % 26
-    #
-    # alphanumeric_numbers = []
-    # encrypted_numbers = []
-    #
-    # # change ASCII numbers to alphanumeric numbers
-    # for n in range(length):
-    #     a = text[n]
-    #     alphanumeric_numbers.append(ord(a) - 97)
-    #
-    # # exclude whitespaces from encryption
-    # for x in alphanumeric_numbers:
-    #     if x != -65:
-    #         encrypted_numbers.append(x + shift)
-    #     else:
-    #         encrypted_numbers.append(-65)
-    #
-    # # convert from alphanumeric scale to encrypted ASCII numerals
-    # for i in range(length):
-    #     if encrypted_numbers[i] == -65:
-    #         encrypted_numbers[i] = 32
-    #     else:
-    #         encrypted_numbers[i] = encrypted_numbers[i] % 26 + 97
-    #
-    # # convert from ASCII numerals to corresponding characters
-    # encrypted_letters = ''.join(chr(i) for i in encrypted_numbers)
-    # return (encrypted_letters)
