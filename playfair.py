@@ -285,20 +285,15 @@ def encrypt_rectangle(two_chars, key_table):
 
 def encrypt(user_in):
     """Description: encrypt the user input according to the playfair cipher
-    algorithm.
+    algorithm. Prompts for keyword.
 
     Arguments:
-        keyword (string): a keyword (will be validated). If not valid, the
-        user will be promped to enter a new keyword.
         user_in (string): user input to encrypt (note that user_in is
         validated in this function).
     Returns:
         encrypted_message (string): the encrypted message.
     """
-
-    # prompt user to input keyword
-    keyword = input('Enter keyword: ')
-
+    keyword = input("Keyword: ")
     validated_key = validate_key(keyword)
     key_table = generate_key_table(validated_key)
     processed_text = validate_plaintext(user_in)
@@ -398,18 +393,14 @@ def decrypt_rectangle(two_chars, key_table):
 
 def decrypt(user_in):
     """Description: decrypt the user input according to the playfair cipher
-    algorithm.
+    algorithm. Prompts for key input.
 
     Arguments:
-        keyword (string): a keyword (will be validated). If not valid, the
-        user will be promped to enter a new keyword.
         user_in (string): user input to encrypt (note that user_in is
         validated in this function).
     Returns:
         encrypted_message (string): the encrypted message.
     """
-
-    # prompt user to input keyword
     keyword = input('Enter keyword: ')
 
     validated_key = validate_key(keyword)
@@ -443,11 +434,8 @@ def decrypt(user_in):
 
 if __name__ == "__main__":
     import string
+    # encrypted_text = input("Enter encrypted text: ")
+    # print(decrypt(encrypted_text))
 
-    key_word = input("Enter key> ")
-    encrypted_text = input("Enter encrypted text: ")
-    print(decrypt(key_word, encrypted_text))
-
-    # key_word = input("Enter key> ")
-    # plaintext = input("Enter plaintext: ")
-    # print(encrypt(key_word, plaintext))
+    plaintext = input("Enter plaintext: ")
+    print(encrypt(plaintext))
