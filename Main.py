@@ -81,6 +81,7 @@ if __name__ == '__main__':
                 print(output)
             elif CypherType == '2':
                 output = playfair.decrypt(text)
+                print(output)
         else:
             print('you are bad')
         pyperclip.copy(output)
