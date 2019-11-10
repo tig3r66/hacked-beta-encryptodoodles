@@ -1,5 +1,7 @@
 # Implements the playfair encryption algorithm. Requires the string module to
 # be imported.
+import string
+
 
 def validate_key(key_in):
     """Description: Validates a potential key from user input to use in the
@@ -433,7 +435,6 @@ def decrypt(user_in):
 
 
 if __name__ == "__main__":
-    import string
     # encrypted_text = input("Enter encrypted text: ")
     # print(decrypt(encrypted_text))
 
